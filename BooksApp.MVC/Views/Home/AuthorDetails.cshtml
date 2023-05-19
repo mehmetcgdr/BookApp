@@ -1,0 +1,71 @@
+﻿@model AuthorModel
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-3">
+            <div class="row">
+                
+                    <div class="col-12 pb-3 ">
+                        <img class="w-100" src="/images/authors/@Model.ImageUrl" />
+                    </div>
+                
+
+            </div>
+        </div>
+        <div class="col-5 bg-light p-3">
+            <h3 class="display-6 fs-4 fw-normal text-danger">@Model.Name</h3>
+            @*@if (Model.Gender == "E") { ("Erkek")};*@
+            <div>@Model.Gender </div>
+            <div>@Model.BirthDate.ToShortDateString() </div>
+            
+            
+           
+            <h3 class="display-6 fs-4 fw-normal text-danger mt-2 pt-5">Hakkında</h3>
+            <p class="fs-6 ">
+                @Html.Raw(Model.About)
+            </p>
+        </div>
+        <div class="col-4">
+           
+            <div class="border-1 border-warning border p-3 pb-0">
+                <div class="row">
+                    <div class="col-12 ">
+                       @foreach (var book in Model.Books)
+                        {
+                            <div class="col-12">
+                              
+                                    <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Url" class="fw-bold"> @book.Name</a>
+                               
+                                <div class="fs-5 display-6">
+                                  Fiyat @book.Price
+                                </div>
+                                <div class="fs-5 display-6">
+                                  Baskı Numarası: @book.EditionNumber
+                                </div>
+                                <div class="fs-5 display-6">
+                                  Baskı Yılı.: @book.EditionYear
+                                </div>
+                                <div class="fs-5 display-6">
+                                   Sayfa Sayısı: @book.PageCount
+                                </div>
+                                <div class="fs-5 display-6">
+                                   Stok Miktarı: @book.Stock
+                                </div>
+                               
+                               
+                                <hr>
+                            </div>
+                            
+                        }
+                    </div>
+                    <div class="col-6 text-center">
+                       
+                       
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
